@@ -7,22 +7,34 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-background: #000;
-color: #fff;
-overflow: hidden;
-height: 100vh;
 font-family: Arial, sans-serif;
+background: #ffffff;
+color: #000000;
+height: 100vh;
+overflow: hidden;
+}
+header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 25px 40px;
+border-bottom: 1px solid #ddd;
+}
+.logo {
+font-weight: bold;
+font-size: 24px;
 }
 .slideshow {
-height: 100vh;
+height: calc(100vh - 130px); /* leaves space for header + footer */
 position: relative;
+overflow: hidden;
 }
 .slide {
 position: absolute;
 top: 0; left: 0;
 width: 100%; height: 100%;
 opacity: 0;
-transition: opacity 0.7s ease;
+transition: opacity 0.8s ease;
 display: none;
 }
 .slide.active {
@@ -32,23 +44,29 @@ display: block;
 .slide img {
 width: 100%;
 height: 100%;
-object-fit: contain; /* This fixes "too big" — shows whole photo without cropping */
-background: #000;
+object-fit: contain; /* shows full photo without cropping or stretching */
+background: #f9f9f9;
 }
 footer {
-position: fixed;
-bottom: 20px;
-left: 0; right: 0;
+padding: 20px 40px;
 text-align: center;
-font-size: 13px;
-color: rgba(255,255,255,0.6);
-z-index: 100;
-pointer-events: none;
+font-size: 14px;
+color: #666;
+border-top: 1px solid #ddd;
+}
+@media (max-width: 600px) {
+header, footer { padding: 15px 20px; }
+.logo { font-size: 20px; }
 }
 </style>
 </head>
 <body>
+<header>
+<div class="logo">Everett Gold</div>
+</header>
+
 <div class="slideshow" id="slideshow">
+<!-- Your photos go here -->
 <div class="slide active">
 <img src="photo1.jpg" alt="">
 </div>
@@ -58,11 +76,11 @@ pointer-events: none;
 <div class="slide">
 <img src="photo3.jpg" alt="">
 </div>
-<!-- Add more slides here if you want (copy-paste the block above) -->
+<!-- Add more <div class="slide"> blocks if you have more photos -->
 </div>
 
 <footer>
-Everett Gold © 2026
+Website © 2026 Everett Gold. All Rights Reserved.
 </footer>
 
 <script>
@@ -75,10 +93,10 @@ slides.forEach(s => s.classList.remove('active'));
 slides[current].classList.add('active');
 }
 
-// Tap or click anywhere on the image to go next
+// Tap or click the photo to go to next image
 document.getElementById('slideshow').addEventListener('click', nextSlide);
 
-// Keyboard support (left/right arrows)
+// Keyboard support (right arrow or spacebar)
 document.addEventListener('keydown', e => {
 if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
 });
