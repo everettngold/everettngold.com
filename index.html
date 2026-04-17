@@ -33,10 +33,10 @@ font-size: 18px;
 nav a:hover { text-decoration: underline; }
 
 .slideshow {
-height: calc(100vh - 135px);
+height: calc(100vh - 150px); /* More space for footer */
 display: flex;
-align-items: center; /* Vertical centering */
-justify-content: center; /* Horizontal centering */
+align-items: center;
+justify-content: center;
 padding: 20px;
 position: relative;
 overflow: hidden;
@@ -54,7 +54,7 @@ display: block;
 }
 .slide img {
 width: 100%;
-max-height: 75vh; /* Smaller on all devices */
+max-height: 68vh; /* Smaller on phones */
 height: auto;
 object-fit: contain;
 margin: 0 auto;
@@ -65,12 +65,11 @@ background: #f9f9f9;
 footer {
 padding: 15px 40px;
 text-align: center;
-font-size: 12px; /* Smaller footer text */
+font-size: 12px;
 color: #777;
 border-top: 1px solid #ddd;
 }
 
-/* Extra mobile tweaks */
 @media (max-width: 600px) {
 header, footer {
 padding: 18px 20px;
@@ -82,9 +81,10 @@ font-size: 17px;
 }
 .slideshow {
 padding: 15px;
+height: calc(100vh - 140px);
 }
 .slide img {
-max-height: 68vh; /* Even smaller on phones */
+max-height: 62vh; /* Even smaller on iPhone */
 }
 }
 </style>
@@ -107,9 +107,10 @@ max-height: 68vh; /* Even smaller on phones */
 <div class="slide">
 <img src="photo3.jpg" alt="">
 </div>
-<!-- Add more slides here if needed -->
 <div class="slide">
 <img src="photo4.jpg" alt="">
+</div>
+<!-- Add more <div class="slide"> blocks here for new photos -->
 </div>
 
 <footer>
@@ -126,16 +127,15 @@ slides.forEach(s => s.classList.remove('active'));
 slides[current].classList.add('active');
 }
 
-// Auto transition every 4 seconds
 setInterval(nextSlide, 4000);
 
-// Click/tap to advance manually
 document.getElementById('slideshow').addEventListener('click', nextSlide);
 
-// Keyboard support
 document.addEventListener('keydown', e => {
 if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
 });
 </script>
 </body>
 </html>
+
+
